@@ -151,7 +151,7 @@ def get_chatbot_response(user_query):
             time.sleep(1)
             
         if not documents:
-            return "No documents were successfully scraped."
+            return "No documents was successfully scraped."
         
         # Step 3: Split documents into chunks
         splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
