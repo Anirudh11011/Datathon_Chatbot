@@ -2,7 +2,12 @@
 import streamlit as st
 from datetime import datetime
 from backend import get_chatbot_response  # Ensure your backend module is accessible
+import asyncio
 
+try:
+    asyncio.get_running_loop()
+except RuntimeError:
+    asyncio.set_event_loop(asyncio.new_event_loop())
 # Inject custom CSS for a refined chatbot UI with royal colors
 st.markdown(
     """
