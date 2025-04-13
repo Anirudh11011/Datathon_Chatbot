@@ -190,4 +190,6 @@ def get_chatbot_response(user_query):
         answer = query_groq(final_prompt)
         return answer
 
-
+    except Exception as error:
+        print("An error occurred in get_chatbot_response:", error)
+        return "An error occurred while retrieving the answer."
