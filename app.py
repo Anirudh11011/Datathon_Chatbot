@@ -1,8 +1,12 @@
 # %%writefile app.py
+import nest_asyncio
+nest_asyncio.apply()  # Patch asyncio to allow nested event loops
+
+import torch  # Pre-import torch to avoid file watcher issues with dynamic attributes
+
 import streamlit as st
 from datetime import datetime
-from backend import get_chatbot_response  # Ensure your backend module is accessible
-import asyncio
+from backend import get_chatbot_response 
 
 try:
     import sqlite3
