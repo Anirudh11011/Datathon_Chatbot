@@ -1,2 +1,7 @@
 [server]
-runOnSave = false
+headless = true
+port = $PORT
+enableCORS = false
+
+[watcher]
+type = "none"
