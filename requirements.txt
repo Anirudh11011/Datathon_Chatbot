@@ -8,3 +8,4 @@ chromadb
 sentence-transformers
 pysqlite3-binary
 torch
+nest_asyncio
