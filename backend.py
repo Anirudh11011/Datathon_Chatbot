@@ -8,6 +8,11 @@ import os
 import streamlit as st
 import requests
 import time
+try:
+    import sqlite3
+    from pysqlite3 import dbapi2 as sqlite3
+except ImportError:
+    pass
 
 
 
