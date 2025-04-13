@@ -1,28 +1,27 @@
 # %%writefile app.py
-import nest_asyncio
-nest_asyncio.apply()  # Patch asyncio to allow nested event loops
+import asyncio
 
-import torch  # Pre-import torch to avoid file watcher issues with dynamic attributes
-
-import streamlit as st
-from datetime import datetime
-from backend import get_chatbot_response 
-
-try:
-    import sqlite3
-    from pysqlite3 import dbapi2 as sqlite3
-except ImportError:
-    pass
-
+# Ensure a running event loop exists. If none exists, create one.
 try:
     asyncio.get_running_loop()
 except RuntimeError:
-    asyncio.set_event_loop(asyncio.new_event_loop())
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
+import nest_asyncio
+nest_asyncio.apply()  # Allow nested event loops
+
+# Import torch early to initialize Torch's internals before Streamlit's file watcher inspects it.
+import torch
+
+import streamlit as st
+from datetime import datetime
+from backend import get_chatbot_response  # Ensure your backend module is accessible
+
 # Inject custom CSS for a refined chatbot UI with royal colors
 st.markdown(
     """
     <style>
-
     /* Container for the chat history */
     .chat-container {
         max-width: 800px;
@@ -34,7 +33,7 @@ st.markdown(
     }
     /* User message bubble - queries aligned left */
     .chat-message.user {
-        background-color: #333333;  /* light lavender-blue */
+        background-color: #333333;
         color: #ffffff;
         padding: 10px;
         border-radius: 10px;
@@ -45,7 +44,7 @@ st.markdown(
     }
     /* Bot message bubble - answers aligned right */
     .chat-message.bot {
-        background-color: #2A2F45;  /* royal blue */
+        background-color: #2A2F45;
         color: #fff;
         padding: 10px;
         border-radius: 10px;
@@ -64,7 +63,7 @@ st.markdown(
     .header {
         text-align: center;
         padding: 15px;
-        background-color: #2A2F45;  /* dark royal */
+        background-color: #2A2F45;
         color: #fff;
         border-radius: 10px;
         margin-bottom: 20px;
@@ -79,7 +78,6 @@ def display_chat_message(speaker, message, timestamp):
     Display a chat message with custom CSS.
     The user's query is aligned left, while the bot's answer is aligned right.
     """
-    # Determine which CSS class to use based on the speaker
     bubble_class = "chat-message user" if speaker.lower() == "you" else "chat-message bot"
     html_content = f"""
     <div class="{bubble_class}">
@@ -115,4 +113,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
