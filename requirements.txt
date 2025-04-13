@@ -3,7 +3,8 @@ requests
 beautifulsoup4
 aiohttp
 langchain
+langchain-community
 chromadb
 sentence-transformers
-langchain-community
 pysqlite3-binary
+torch
