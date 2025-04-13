@@ -1,5 +1,6 @@
 
 # %%writefile backend.py
+import streamlit as st
 import requests
 import time
 from bs4 import BeautifulSoup
