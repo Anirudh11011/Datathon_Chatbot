@@ -1,9 +1,9 @@
 requests
 beautifulsoup4
 aiohttp
-langchain>=0.2.0
+langchain
 chromadb
 sentence-transformers
 nest_asyncio
-torch==2.1.0
-streamlit==1.29.0
+torch
+streamlit
