@@ -5,6 +5,12 @@ from backend import get_chatbot_response  # Ensure your backend module is access
 import asyncio
 
 try:
+    import sqlite3
+    from pysqlite3 import dbapi2 as sqlite3
+except ImportError:
+    pass
+
+try:
     asyncio.get_running_loop()
 except RuntimeError:
     asyncio.set_event_loop(asyncio.new_event_loop())
