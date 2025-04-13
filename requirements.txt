@@ -1,11 +1,9 @@
-streamlit
+streamlit>=1.32.0
 requests
 beautifulsoup4
 aiohttp
-langchain
-langchain-community
+langchain>=0.2.0
 chromadb
 sentence-transformers
-pysqlite3-binary
-torch
+torch>=2.1.0
 nest_asyncio
