@@ -5,3 +5,4 @@ aiohttp
 langchain
 chromadb
 sentence-transformers
+langchain-community
