@@ -4,7 +4,7 @@ beautifulsoup4
 aiohttp
 langchain
 langchain-community
-chromadb==0.3.24
+chromadb
 sentence-transformers
 pysqlite3-binary
 torch
