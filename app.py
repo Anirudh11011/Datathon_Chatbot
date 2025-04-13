@@ -28,7 +28,8 @@ st.markdown(
         background-color: #F0F0F0;
         border-radius: 10px;
     }
-    /* User message bubble - queries aligned left */
+
+    /* User message bubble - now aligned right */
     .chat-message.user {
         background-color: #333333;
         color: #ffffff;
@@ -37,9 +38,10 @@ st.markdown(
         margin: 10px 0;
         text-align: left;
         max-width: 70%;
-        margin-right: auto;
+        margin-left: auto;  /* Align right */
     }
-    /* Bot message bubble - answers aligned right */
+
+    /* Bot message bubble - now aligned left */
     .chat-message.bot {
         background-color: #2A2F45;
         color: #fff;
@@ -48,14 +50,16 @@ st.markdown(
         margin: 10px 0;
         text-align: left;
         max-width: 70%;
-        margin-left: auto;
+        margin-right: auto;  /* Align left */
     }
+
     /* Timestamp styling */
     .chat-time {
         font-size: 0.8rem;
         color: #ccc;
         margin-top: 5px;
     }
+
     /* Header styling with a royal tone */
     .header {
         text-align: center;
