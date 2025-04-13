@@ -1,20 +1,12 @@
 
-# %%writefile backend.py
+%%writefile backend.py
 import requests
 import time
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 import os
-import streamlit as st
-import requests
-import time
-try:
-    import sqlite3
-    from pysqlite3 import dbapi2 as sqlite3
-except ImportError:
-    pass
-
-
+import aiohttp
+import asyncio
 
 # Import necessary classes from LangChain
 from langchain.docstore.document import Document
@@ -190,7 +182,7 @@ def get_chatbot_response(user_query):
         answer = query_groq(final_prompt)
         return answer
 
-      except Exception as error:
+    except Exception as error:
         # Capture any error and return it for debugging
         st.error("An error occurred in get_chatbot_response: " + str(error))
         return "An error occurred while retrieving the answer."
