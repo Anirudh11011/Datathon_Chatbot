@@ -1,7 +1,10 @@
 [server]
 headless = true
-port = $PORT
 enableCORS = false
+port = $PORT
+
+[theme]
+base = "light"  # Or "dark" if you prefer
 
 [watcher]
-type = "none"
+type = "none"  # Disable file watcher to fix PyTorch RuntimeError
