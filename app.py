@@ -1,18 +1,15 @@
 # %%writefile app.py
-import asyncio
-
-# Ensure a running event loop exists. If none exists, create one.
 try:
-    asyncio.get_running_loop()
-except RuntimeError:
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
+    import pysqlite3 as sqlite3
+    import sys
+    sys.modules["sqlite3"] = sqlite3
+except ImportError:
+    import sqlite3
 
 import nest_asyncio
-nest_asyncio.apply()  # Allow nested event loops
+nest_asyncio.apply()
 
-# Import torch early to initialize Torch's internals before Streamlit's file watcher inspects it.
-import torch
+import torch  # Pre-import torch to avoid file watcher issues
 
 import streamlit as st
 from datetime import datetime
