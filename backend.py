@@ -19,7 +19,7 @@ from langchain.vectorstores import Chroma
 
 
 GOOGLE_API_KEY = "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"  # Replace with your Google API key
-CUSTOM_SEARCH_ENGINE_ID = "85eeea20bc1e5407d"  # Replace with your Custom Search Engine ID
+CUSTOM_SEARCH_ENGINE_ID = "d4d5c5f3dd58e41b3"  # Replace with your Custom Search Engine ID
 
 # Groq API configuration
 GROQ_API_KEY = "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"  # Replace with your Groq API key or other LLM API key
