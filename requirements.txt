@@ -7,3 +7,4 @@ sentence-transformers
 nest_asyncio
 torch
 streamlit
+langchain-community
