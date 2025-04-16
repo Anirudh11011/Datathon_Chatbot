@@ -1,6 +1,5 @@
 
 # %%writefile backend.py
-import streamlit as st
 import requests
 import time
 from bs4 import BeautifulSoup
@@ -136,12 +135,12 @@ def get_chatbot_response(user_query):
         search_results = google_site_search(user_query, GOOGLE_API_KEY, CUSTOM_SEARCH_ENGINE_ID)
         if not search_results:
             return "No search results found."
-        
+
         # Optional: Save URLs for reference
         with open("scraped_urls.txt", "w") as f:
             for result in search_results:
                 f.write(result["link"] + "\n")
-        
+
         # Step 2: Scrape content
         documents = []
         for result in search_results:
@@ -149,14 +148,14 @@ def get_chatbot_response(user_query):
             if doc and doc.page_content.strip():
                 documents.append(doc)
             time.sleep(1)
-            
+
         if not documents:
-            return "No documents was successfully scraped."
-        
+            return "No documents were successfully scraped."
+
         # Step 3: Split documents into chunks
         splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
         docs = splitter.split_documents(documents)
-        
+
         # Step 4: Create vector DB and generate embeddings
         try:
             embedding_function = SentenceTransformerEmbeddings(model_name=EMBEDDING_MODEL)
@@ -165,20 +164,20 @@ def get_chatbot_response(user_query):
         except Exception as e:
             st.error("Error creating vector database: " + str(e))
             return "Error in vector database creation."
-        
+
         # Step 5: Similarity search to get context
         similarity_results = vectordb.similarity_search(user_query, k=4)
         context = "\n\n".join([doc.page_content for doc in similarity_results])
-        
+
         # Step 6: Compose the final prompt and query the LLM
         final_prompt = f"""You are an expert assistant for the University of Texas at Arlington (UTA).
-    Answer the question using the context below. Be concise and clear.
-    
+    Answer the question using the context below.
+
     Context:
     {context}
-    
+
     Question: {user_query}
-    
+
     Answer:"""
         answer = query_groq(final_prompt)
         return answer
