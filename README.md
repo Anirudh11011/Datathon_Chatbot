@@ -108,12 +108,6 @@ Don't hardcode API keys in production. Use environment variables instead.
 
 ---
 
-## 📄 License
-
-MIT License — feel free to use and modify!
-
----
-
 ## ✨ Acknowledgments
 
 - [LangChain](https://www.langchain.com/)
