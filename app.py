@@ -1,6 +1,12 @@
 import streamlit as st
 from datetime import datetime
 from backend import get_chatbot_response  # Ensure your backend module is accessible
+try:
+    import pysqlite3 as sqlite3
+    import sys
+    sys.modules["sqlite3"] = sqlite3
+except ImportError:
+    import sqlite3
 
 # Inject custom CSS for a refined chatbot UI with royal colors
 st.markdown(
