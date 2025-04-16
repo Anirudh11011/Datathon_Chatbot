@@ -1,5 +1,5 @@
-[server]
-runOnSave = false
+# [server]
+# runOnSave = false
 
 [server]
 fileWatcherType = "none"
