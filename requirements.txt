@@ -9,3 +9,4 @@ torch
 streamlit
 langchain-community
 pysqlite3-binary
+time
