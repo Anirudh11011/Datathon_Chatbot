@@ -79,8 +79,10 @@ def display_chat_message(speaker, message, timestamp):
     """
     st.markdown(html_content, unsafe_allow_html=True)
 
+import time  # Add this at the top if not already
+
 def main():
-    st.markdown('<div class="header"><h1>UTA Chatbot</h1><p>Your Personal Assistant for UTA Information</p></div>', unsafe_allow_html=True)
+    st.markdown('<div class="header"><h1>UTA Chatbot Using RAG</h1><p>Your Personal Assistant for UTA Information</p></div>', unsafe_allow_html=True)
 
     # Initialize session state for chat history
     if "chat_history" not in st.session_state:
@@ -91,11 +93,15 @@ def main():
 
     if st.button("Submit") and user_query:
         with st.spinner("Processing your query..."):
-            # Get the answer using the backend function
+            start_time = time.time()  # Start timer
             response = get_chatbot_response(user_query)
+            end_time = time.time()    # End timer
+
+            response_time = round(end_time - start_time, 2)
             timestamp = datetime.now().strftime("%I:%M %p")
+
             st.session_state.chat_history.append(("You", user_query, timestamp))
-            st.session_state.chat_history.append(("Bot", response, timestamp))
+            st.session_state.chat_history.append(("Bot", f"{response}\n\n⏱️ Answered in {response_time} seconds", timestamp))
 
     # Display the conversation history within the chat container
     st.markdown('<div class="chat-container">', unsafe_allow_html=True)
