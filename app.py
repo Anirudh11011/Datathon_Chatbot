@@ -82,7 +82,7 @@ def display_chat_message(speaker, message, timestamp):
 import time  # Add this at the top if not already
 
 def main():
-    st.markdown('<div class="header"><h1>UTA Chatbot Using RAG</h1><p>Your Personal Assistant for UTA Information</p></div>', unsafe_allow_html=True)
+    st.markdown('<div class="header"><h1>UTA Chatbot Using RAG Technique</h1><p>Your Personal Assistant for UTA Information</p></div>', unsafe_allow_html=True)
 
     # Initialize session state for chat history
     if "chat_history" not in st.session_state:
